@@ -66777,7 +66777,6 @@ var InputPage = /*#__PURE__*/function (_Component) {
     _this.updateCategory = _this.updateCategory.bind(_assertThisInitialized(_this));
     _this.answerHandler = _this.answerHandler.bind(_assertThisInitialized(_this));
     _this.questionHandler = _this.questionHandler.bind(_assertThisInitialized(_this));
-    _this.testButton = _this.testButton.bind(_assertThisInitialized(_this));
     _this.submitHandler = _this.submitHandler.bind(_assertThisInitialized(_this));
     _this.showFeedbackHandler = _this.showFeedbackHandler.bind(_assertThisInitialized(_this));
     return _this;
@@ -66813,11 +66812,6 @@ var InputPage = /*#__PURE__*/function (_Component) {
     value: function answerHandler(event) {
       var name = event.target.name;
       this.setState(_defineProperty({}, name, event.target.value));
-    }
-  }, {
-    key: "testButton",
-    value: function testButton() {
-      console.log(this.state);
     }
   }, {
     key: "submitHandler",
@@ -66945,10 +66939,7 @@ var InputPage = /*#__PURE__*/function (_Component) {
         type: "button",
         className: "btn btn-success btn-block",
         onClick: this.submitHandler
-      }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        onClick: this.testButton
-      }, "Test"), this.state.showFeedback ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Submit"), this.state.showFeedback ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           color: this.state.feedbackColour
         }

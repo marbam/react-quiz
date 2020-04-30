@@ -2,5 +2,4 @@ Outstanding
 
 Bug: Reset doesn't remove class from categories
 Styling
-Remove test button (and code)
 Update to ES6

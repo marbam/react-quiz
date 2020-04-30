@@ -20,7 +20,6 @@ class InputPage extends Component {
         this.updateCategory = this.updateCategory.bind(this);
         this.answerHandler = this.answerHandler.bind(this);
         this.questionHandler = this.questionHandler.bind(this);
-        this.testButton = this.testButton.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
         this.showFeedbackHandler = this.showFeedbackHandler.bind(this);
     }
@@ -52,12 +51,7 @@ class InputPage extends Component {
           });
     }
 
-    testButton () {
-        console.log(this.state);
-    }
-
     submitHandler() {
-
         this.setState({
             feedback: '',
             showFeedback: false
@@ -122,7 +116,6 @@ class InputPage extends Component {
                 })
             }
         })
-
     }
 
     showFeedbackHandler(errorToShow) {
@@ -167,7 +160,6 @@ class InputPage extends Component {
                                 </tbody>
                             </table>
                             <button type="button" className="btn btn-success btn-block" onClick={this.submitHandler}>Submit</button>
-                            <button type="button" onClick={this.testButton}>Test</button>
                             {
                                 this.state.showFeedback ?
                                 <div style={{color:this.state.feedbackColour}}>{this.state.feedback}</div>
