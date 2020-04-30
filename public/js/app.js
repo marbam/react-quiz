@@ -66816,6 +66816,7 @@ var InputPage = /*#__PURE__*/function (_Component) {
       answer2: '',
       answer3: '',
       answer4: '',
+      correctId: '',
       showFeedback: false,
       feedback: '',
       feedbackColour: 'green'
@@ -66823,6 +66824,7 @@ var InputPage = /*#__PURE__*/function (_Component) {
     _this.updateCategory = _this.updateCategory.bind(_assertThisInitialized(_this));
     _this.answerHandler = _this.answerHandler.bind(_assertThisInitialized(_this));
     _this.questionHandler = _this.questionHandler.bind(_assertThisInitialized(_this));
+    _this.correctHandler = _this.correctHandler.bind(_assertThisInitialized(_this));
     _this.submitHandler = _this.submitHandler.bind(_assertThisInitialized(_this));
     _this.showFeedbackHandler = _this.showFeedbackHandler.bind(_assertThisInitialized(_this));
     return _this;
@@ -66860,6 +66862,15 @@ var InputPage = /*#__PURE__*/function (_Component) {
       this.setState(_defineProperty({}, name, event.target.value));
     }
   }, {
+    key: "correctHandler",
+    value: function correctHandler(event) {
+      var correctName = event.target.name;
+      var id = correctName.charAt(7);
+      this.setState({
+        correctId: parseInt(id)
+      });
+    }
+  }, {
     key: "submitHandler",
     value: function submitHandler() {
       this.setState({
@@ -66895,12 +66906,17 @@ var InputPage = /*#__PURE__*/function (_Component) {
       if (this.state.answer4 == '') {
         this.showFeedbackHandler('Please enter your fourth answer!');
         return false;
+      }
+
+      if (this.state.correctId == '') {
+        this.showFeedbackHandler('Please select the correct answer!');
+        return false;
       } // bodge to jump around the 'this' within the 'then'
 
 
       var localThis = this; // submit
 
-      axios.post('/api/save_question', [this.state.category, this.state.question, this.state.answer1, this.state.answer2, this.state.answer3, this.state.answer4]).then(function (response) {
+      axios.post('/api/save_question', [this.state.category, this.state.question, this.state.answer1, this.state.answer2, this.state.answer3, this.state.answer4, this.state.correctId]).then(function (response) {
         // then wipe everything.
         if (response['status'] == 200) {
           localThis.setState({
@@ -66910,6 +66926,7 @@ var InputPage = /*#__PURE__*/function (_Component) {
             answer2: '',
             answer3: '',
             answer4: '',
+            correctId: '',
             feedback: 'Successfully saved!',
             feedbackColour: 'green',
             showFeedback: true
@@ -66980,7 +66997,23 @@ var InputPage = /*#__PURE__*/function (_Component) {
         value: this.state.answer4,
         onKeyUp: this.answerHandler,
         onChange: this.answerHandler
-      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select the correct answer:"), this.state.answer1 == '' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn ".concat(this.state.correctId === 1 ? "btn-success" : "btn-light"),
+        name: "correct1",
+        onClick: this.correctHandler
+      }, this.state.answer1), this.state.answer2 == '' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn ".concat(this.state.correctId === 2 ? "btn-success" : "btn-light"),
+        name: "correct2",
+        onClick: this.correctHandler
+      }, this.state.answer2), this.state.answer3 == '' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn ".concat(this.state.correctId === 3 ? "btn-success" : "btn-light"),
+        name: "correct3",
+        onClick: this.correctHandler
+      }, this.state.answer3), this.state.answer4 == '' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn ".concat(this.state.correctId === 4 ? "btn-success" : "btn-light"),
+        name: "correct4",
+        onClick: this.correctHandler
+      }, this.state.answer4), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "btn btn-success btn-block lowerButton",
         onClick: this.submitHandler

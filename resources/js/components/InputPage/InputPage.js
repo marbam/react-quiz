@@ -14,6 +14,7 @@ class InputPage extends Component {
             answer2: '',
             answer3: '',
             answer4: '',
+            correctId: '',
             showFeedback: false,
             feedback: '',
             feedbackColour: 'green'
@@ -21,6 +22,7 @@ class InputPage extends Component {
         this.updateCategory = this.updateCategory.bind(this);
         this.answerHandler = this.answerHandler.bind(this);
         this.questionHandler = this.questionHandler.bind(this);
+        this.correctHandler = this.correctHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
         this.showFeedbackHandler = this.showFeedbackHandler.bind(this);
     }
@@ -46,10 +48,18 @@ class InputPage extends Component {
     }
 
     answerHandler(event) {
-        const name = event.target.name;
+        let name = event.target.name;
         this.setState({
             [name]: event.target.value
           });
+    }
+
+    correctHandler(event) {
+        let correctName = event.target.name;
+        let id = correctName.charAt(7);
+        this.setState({
+            correctId: parseInt(id)
+        });
     }
 
     submitHandler() {
@@ -89,6 +99,11 @@ class InputPage extends Component {
             return false;
         }
 
+        if (this.state.correctId == '') {
+            this.showFeedbackHandler('Please select the correct answer!');
+            return false;
+        }
+
         // bodge to jump around the 'this' within the 'then'
         var localThis = this;
 
@@ -99,7 +114,8 @@ class InputPage extends Component {
             this.state.answer1,
             this.state.answer2,
             this.state.answer3,
-            this.state.answer4
+            this.state.answer4,
+            this.state.correctId
         ])
         .then(function(response){
             // then wipe everything.
@@ -111,6 +127,7 @@ class InputPage extends Component {
                     answer2: '',
                     answer3: '',
                     answer4: '',
+                    correctId: '',
                     feedback: 'Successfully saved!',
                     feedbackColour: 'green',
                     showFeedback: true
@@ -162,6 +179,43 @@ class InputPage extends Component {
                                     </tr>
                                 </tbody>
                             </table>
+                            <p>Select the correct answer:</p>
+                            { this.state.answer1 == '' ? null :
+                                <button
+                                    className={`btn ${this.state.correctId === 1 ? "btn-success" : "btn-light"}`}
+                                    name="correct1"
+                                    onClick={this.correctHandler}
+                                >
+                                {this.state.answer1}
+                                </button>
+                            }
+                            { this.state.answer2 == '' ? null :
+                                <button
+                                    className={`btn ${this.state.correctId === 2 ? "btn-success" : "btn-light"}`}
+                                    name="correct2"
+                                    onClick={this.correctHandler}
+                                >
+                                    {this.state.answer2}
+                                </button>
+                            }
+                            { this.state.answer3 == '' ? null :
+                                <button
+                                    className={`btn ${this.state.correctId === 3 ? "btn-success" : "btn-light"}`}
+                                    name="correct3"
+                                    onClick={this.correctHandler}
+                                >
+                                    {this.state.answer3}
+                                </button>
+                            }
+                            { this.state.answer4 == '' ? null :
+                                <button
+                                    className={`btn ${this.state.correctId === 4 ? "btn-success" : "btn-light"}`}
+                                    name="correct4"
+                                    onClick={this.correctHandler}
+                                >
+                                    {this.state.answer4}
+                                </button>
+                            }
                             <button type="button" className="btn btn-success btn-block lowerButton" onClick={this.submitHandler}>Submit</button>
                             {
                                 this.state.showFeedback ?
