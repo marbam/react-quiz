@@ -66602,10 +66602,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function CategoryButton(props) {
-  function handleButtonClick(event) {
+CategoryButton = function CategoryButton(props) {
+  handleButtonClick = function handleButtonClick(event) {
     props.click(event.target.id);
-  }
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
@@ -66613,7 +66613,7 @@ function CategoryButton(props) {
     className: "btn ".concat(props.id == props.selectedId ? "btn-success" : "btn-default"),
     id: props.id
   }, props.name);
-}
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (CategoryButton);
 
