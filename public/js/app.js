@@ -66570,7 +66570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _InputPage_InputPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InputPage/InputPage */ "./resources/js/components/InputPage/InputPage.js");
 
 
- // import CategoryList from './CategoryList';
+
 
 function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

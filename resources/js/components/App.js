@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InputPage from './InputPage/InputPage';
-// import CategoryList from './CategoryList';
 
 function App() {
 
