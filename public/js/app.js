@@ -66725,6 +66725,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CategoryList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryList */ "./resources/js/components/InputPage/CategoryList.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -66773,10 +66775,7 @@ var InputPage = /*#__PURE__*/function (_Component) {
       feedbackColour: 'green'
     };
     _this.updateCategory = _this.updateCategory.bind(_assertThisInitialized(_this));
-    _this.answer1Handler = _this.answer1Handler.bind(_assertThisInitialized(_this));
-    _this.answer2Handler = _this.answer2Handler.bind(_assertThisInitialized(_this));
-    _this.answer3Handler = _this.answer3Handler.bind(_assertThisInitialized(_this));
-    _this.answer4Handler = _this.answer4Handler.bind(_assertThisInitialized(_this));
+    _this.answerHandler = _this.answerHandler.bind(_assertThisInitialized(_this));
     _this.questionHandler = _this.questionHandler.bind(_assertThisInitialized(_this));
     _this.testButton = _this.testButton.bind(_assertThisInitialized(_this));
     _this.submitHandler = _this.submitHandler.bind(_assertThisInitialized(_this));
@@ -66810,32 +66809,10 @@ var InputPage = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "answer1Handler",
-    value: function answer1Handler() {
-      this.setState({
-        answer1: event.target.value
-      });
-    }
-  }, {
-    key: "answer2Handler",
-    value: function answer2Handler() {
-      this.setState({
-        answer2: event.target.value
-      });
-    }
-  }, {
-    key: "answer3Handler",
-    value: function answer3Handler() {
-      this.setState({
-        answer3: event.target.value
-      });
-    }
-  }, {
-    key: "answer4Handler",
-    value: function answer4Handler() {
-      this.setState({
-        answer4: event.target.value
-      });
+    key: "answerHandler",
+    value: function answerHandler(event) {
+      var name = event.target.name;
+      this.setState(_defineProperty({}, name, event.target.value));
     }
   }, {
     key: "testButton",
@@ -66944,26 +66921,26 @@ var InputPage = /*#__PURE__*/function (_Component) {
         type: "text",
         name: "answer1",
         value: this.state.answer1,
-        onKeyUp: this.answer1Handler,
-        onChange: this.answer1Handler
+        onKeyUp: this.answerHandler,
+        onChange: this.answerHandler
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Second Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "answer2",
         value: this.state.answer2,
-        onKeyUp: this.answer2Handler,
-        onChange: this.answer2Handler
+        onKeyUp: this.answerHandler,
+        onChange: this.answerHandler
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Third Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "answer3",
         value: this.state.answer3,
-        onKeyUp: this.answer3Handler,
-        onChange: this.answer3Handler
+        onKeyUp: this.answerHandler,
+        onChange: this.answerHandler
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Fourth Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "answer4",
         value: this.state.answer4,
-        onKeyUp: this.answer4Handler,
-        onChange: this.answer4Handler
+        onKeyUp: this.answerHandler,
+        onChange: this.answerHandler
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "btn btn-success btn-block",

@@ -18,16 +18,11 @@ class InputPage extends Component {
             feedbackColour: 'green'
         }
         this.updateCategory = this.updateCategory.bind(this);
-        this.answer1Handler = this.answer1Handler.bind(this);
-        this.answer2Handler = this.answer2Handler.bind(this);
-        this.answer3Handler = this.answer3Handler.bind(this);
-        this.answer4Handler = this.answer4Handler.bind(this);
+        this.answerHandler = this.answerHandler.bind(this);
         this.questionHandler = this.questionHandler.bind(this);
         this.testButton = this.testButton.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
         this.showFeedbackHandler = this.showFeedbackHandler.bind(this);
-
-
     }
 
     componentDidMount () {
@@ -50,28 +45,11 @@ class InputPage extends Component {
         })
     }
 
-    answer1Handler () {
+    answerHandler(event) {
+        const name = event.target.name;
         this.setState({
-            answer1: event.target.value
-        })
-    }
-
-    answer2Handler () {
-        this.setState({
-            answer2: event.target.value
-        })
-    }
-
-    answer3Handler () {
-        this.setState({
-            answer3: event.target.value
-        })
-    }
-
-    answer4Handler () {
-        this.setState({
-            answer4: event.target.value
-        })
+            [name]: event.target.value
+          });
     }
 
     testButton () {
@@ -171,19 +149,19 @@ class InputPage extends Component {
                                 <tbody>
                                     <tr>
                                         <td>First Answer</td>
-                                        <td><input type="text" name="answer1" value={this.state.answer1} onKeyUp={this.answer1Handler} onChange={this.answer1Handler}></input></td>
+                                        <td><input type="text" name="answer1" value={this.state.answer1} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
                                     </tr>
                                     <tr>
                                         <td>Second Answer</td>
-                                        <td><input type="text" name="answer2" value={this.state.answer2} onKeyUp={this.answer2Handler} onChange={this.answer2Handler}></input></td>
+                                        <td><input type="text" name="answer2" value={this.state.answer2} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
                                     </tr>
                                     <tr>
                                         <td>Third Answer</td>
-                                        <td><input type="text" name="answer3" value={this.state.answer3} onKeyUp={this.answer3Handler} onChange={this.answer3Handler}></input></td>
+                                        <td><input type="text" name="answer3" value={this.state.answer3} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
                                     </tr>
                                     <tr>
                                         <td>Fourth Answer</td>
-                                        <td><input type="text" name="answer4" value={this.state.answer4} onKeyUp={this.answer4Handler} onChange={this.answer4Handler}></input></td>
+                                        <td><input type="text" name="answer4" value={this.state.answer4} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
 
                                     </tr>
                                 </tbody>
