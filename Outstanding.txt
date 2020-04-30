@@ -1,5 +1,3 @@
 Outstanding
 
-Bug: Reset doesn't remove class from categories
-Styling
-Update to ES6
+Add in Correct Answer :D

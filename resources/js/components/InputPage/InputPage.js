@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import CategoryList from './CategoryList';
+import './InputPage.css';
 
 class InputPage extends Component {
     constructor () {
@@ -127,42 +128,44 @@ class InputPage extends Component {
     }
 
     render() {
-        let categories = [{name:'1'}, {name:'2'}, {name:'3'}];
         return <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">
-                        <div className="card-header">Enter your question!</div>
+                        <div className="card-header"><h5>Enter your question!</h5></div>
                         <div className="card-body">
-                            <h4>Select a Category</h4>
+                            <p>Select a Category:</p>
                             <CategoryList categories={this.state.categories} updateParent={this.updateCategory} selected={this.state.category}></CategoryList>
-                            <label>Question:</label>
-                            <input type="text" name="question" value={this.state.question} onKeyUp={this.questionHandler} onChange={this.questionHandler}></input>
+                            <hr></hr>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>First Answer</td>
-                                        <td><input type="text" name="answer1" value={this.state.answer1} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                        <td>Question:</td>
+                                        <td><input type="text" className="wideInput form-control" name="question" value={this.state.question} onKeyUp={this.questionHandler} onChange={this.questionHandler}></input></td>
                                     </tr>
                                     <tr>
-                                        <td>Second Answer</td>
-                                        <td><input type="text" name="answer2" value={this.state.answer2} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                        <td>First Answer: </td>
+                                        <td><input type="text" className="thinInput form-control" name="answer1" value={this.state.answer1} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
                                     </tr>
                                     <tr>
-                                        <td>Third Answer</td>
-                                        <td><input type="text" name="answer3" value={this.state.answer3} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                        <td>Second Answer: </td>
+                                        <td><input type="text" className="thinInput form-control" name="answer2" value={this.state.answer2} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
                                     </tr>
                                     <tr>
-                                        <td>Fourth Answer</td>
-                                        <td><input type="text" name="answer4" value={this.state.answer4} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                        <td>Third Answer: </td>
+                                        <td><input type="text" className="thinInput form-control" name="answer3" value={this.state.answer3} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fourth Answer: </td>
+                                        <td><input type="text" className="thinInput form-control" name="answer4" value={this.state.answer4} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
 
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="button" className="btn btn-success btn-block" onClick={this.submitHandler}>Submit</button>
+                            <button type="button" className="btn btn-success btn-block lowerButton" onClick={this.submitHandler}>Submit</button>
                             {
                                 this.state.showFeedback ?
-                                <div style={{color:this.state.feedbackColour}}>{this.state.feedback}</div>
+                                <div className="feedbackButton" style={{color:this.state.feedbackColour}}>{this.state.feedback}</div>
                                 : null
                             }
                         </div>

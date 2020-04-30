@@ -1,0 +1,20 @@
+.wideInput {
+    width: 30rem;
+}
+
+.thinInput {
+    width: 15rem;
+}
+
+.lowerButton {
+    margin-top: 12px;
+}
+
+.categoryButton {
+    margin-right: 10px;
+}
+
+.feedbackButton {
+    margin-top: 5px;
+    text-align: center;
+}
