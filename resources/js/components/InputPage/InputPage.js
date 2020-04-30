@@ -135,7 +135,7 @@ class InputPage extends Component {
                         <div className="card-header">Enter your question!</div>
                         <div className="card-body">
                             <h4>Select a Category</h4>
-                            <CategoryList categories={this.state.categories} updateParent={this.updateCategory}></CategoryList>
+                            <CategoryList categories={this.state.categories} updateParent={this.updateCategory} selected={this.state.category}></CategoryList>
                             <label>Question:</label>
                             <input type="text" name="question" value={this.state.question} onKeyUp={this.questionHandler} onChange={this.questionHandler}></input>
                             <table>

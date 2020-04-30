@@ -66602,10 +66602,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-CategoryButton = function CategoryButton(props) {
-  handleButtonClick = function handleButtonClick(event) {
+function CategoryButton(props) {
+  function handleButtonClick(event) {
     props.click(event.target.id);
-  };
+  }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
@@ -66613,7 +66613,7 @@ CategoryButton = function CategoryButton(props) {
     className: "btn ".concat(props.id == props.selectedId ? "btn-success" : "btn-default"),
     id: props.id
   }, props.name);
-};
+}
 
 /* harmony default export */ __webpack_exports__["default"] = (CategoryButton);
 
@@ -66671,18 +66671,12 @@ var CategoryList = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.changeSelection = _this.changeSelection.bind(_assertThisInitialized(_this));
-    _this.state = {
-      selectedId: ''
-    };
     return _this;
   }
 
   _createClass(CategoryList, [{
     key: "changeSelection",
     value: function changeSelection(id) {
-      this.setState({
-        selectedId: id
-      });
       this.props.updateParent(id);
     }
   }, {
@@ -66695,7 +66689,7 @@ var CategoryList = /*#__PURE__*/function (_Component) {
           name: ob.name,
           id: ob.id,
           key: ob.id,
-          selectedId: _this2.state.selectedId,
+          selectedId: _this2.props.selected,
           click: _this2.changeSelection
         });
       }));
@@ -66904,7 +66898,8 @@ var InputPage = /*#__PURE__*/function (_Component) {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Select a Category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_2__["default"], {
         categories: this.state.categories,
-        updateParent: this.updateCategory
+        updateParent: this.updateCategory,
+        selected: this.state.category
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Question:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "question",

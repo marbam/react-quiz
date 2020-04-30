@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-CategoryButton = (props) => {
-    handleButtonClick = (event) => {
+function CategoryButton(props) {
+    function handleButtonClick(event) {
         props.click(event.target.id);
     }
 
