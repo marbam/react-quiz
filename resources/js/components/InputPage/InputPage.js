@@ -79,6 +79,11 @@ class InputPage extends Component {
             return false;
         }
 
+        if (this.state.question.length > 50) {
+            this.showFeedbackHandler('Question must be 50 characters or less!');
+            return false;
+        }
+
         if (this.state.answer1 == '') {
             this.showFeedbackHandler('Please enter your first answer!');
             return false;
