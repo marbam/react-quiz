@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import CategoryList from './CategoryList';
+import './InputPage.css';
 
 class InputPage extends Component {
     constructor () {
@@ -13,21 +14,17 @@ class InputPage extends Component {
             answer2: '',
             answer3: '',
             answer4: '',
+            correctId: '',
             showFeedback: false,
             feedback: '',
             feedbackColour: 'green'
         }
         this.updateCategory = this.updateCategory.bind(this);
-        this.answer1Handler = this.answer1Handler.bind(this);
-        this.answer2Handler = this.answer2Handler.bind(this);
-        this.answer3Handler = this.answer3Handler.bind(this);
-        this.answer4Handler = this.answer4Handler.bind(this);
+        this.answerHandler = this.answerHandler.bind(this);
         this.questionHandler = this.questionHandler.bind(this);
-        this.testButton = this.testButton.bind(this);
+        this.correctHandler = this.correctHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
         this.showFeedbackHandler = this.showFeedbackHandler.bind(this);
-
-
     }
 
     componentDidMount () {
@@ -50,36 +47,22 @@ class InputPage extends Component {
         })
     }
 
-    answer1Handler () {
+    answerHandler(event) {
+        let name = event.target.name;
         this.setState({
-            answer1: event.target.value
-        })
+            [name]: event.target.value
+          });
     }
 
-    answer2Handler () {
+    correctHandler(event) {
+        let correctName = event.target.name;
+        let id = correctName.charAt(7);
         this.setState({
-            answer2: event.target.value
-        })
-    }
-
-    answer3Handler () {
-        this.setState({
-            answer3: event.target.value
-        })
-    }
-
-    answer4Handler () {
-        this.setState({
-            answer4: event.target.value
-        })
-    }
-
-    testButton () {
-        console.log(this.state);
+            correctId: parseInt(id)
+        });
     }
 
     submitHandler() {
-
         this.setState({
             feedback: '',
             showFeedback: false
@@ -93,6 +76,11 @@ class InputPage extends Component {
 
         if (this.state.question == '') {
             this.showFeedbackHandler('Please enter a question!');
+            return false;
+        }
+
+        if (this.state.question.length > 50) {
+            this.showFeedbackHandler('Question must be 50 characters or less!');
             return false;
         }
 
@@ -116,6 +104,11 @@ class InputPage extends Component {
             return false;
         }
 
+        if (this.state.correctId == '') {
+            this.showFeedbackHandler('Please select the correct answer!');
+            return false;
+        }
+
         // bodge to jump around the 'this' within the 'then'
         var localThis = this;
 
@@ -126,7 +119,8 @@ class InputPage extends Component {
             this.state.answer1,
             this.state.answer2,
             this.state.answer3,
-            this.state.answer4
+            this.state.answer4,
+            this.state.correctId
         ])
         .then(function(response){
             // then wipe everything.
@@ -138,13 +132,13 @@ class InputPage extends Component {
                     answer2: '',
                     answer3: '',
                     answer4: '',
+                    correctId: '',
                     feedback: 'Successfully saved!',
                     feedbackColour: 'green',
                     showFeedback: true
                 })
             }
         })
-
     }
 
     showFeedbackHandler(errorToShow) {
@@ -156,55 +150,89 @@ class InputPage extends Component {
     }
 
     render() {
-        let categories = [{name:'1'}, {name:'2'}, {name:'3'}];
-        return <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Enter your question!</div>
-                        <div className="card-body">
-                            <h4>Select a Category</h4>
-                            <CategoryList categories={this.state.categories} updateParent={this.updateCategory}></CategoryList>
-                            <label>Question:</label>
-                            <input type="text" name="question" value={this.state.question} onKeyUp={this.questionHandler} onChange={this.questionHandler}></input>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>First Answer</td>
-                                        <td><input type="text" name="answer1" value={this.state.answer1} onKeyUp={this.answer1Handler} onChange={this.answer1Handler}></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Second Answer</td>
-                                        <td><input type="text" name="answer2" value={this.state.answer2} onKeyUp={this.answer2Handler} onChange={this.answer2Handler}></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Third Answer</td>
-                                        <td><input type="text" name="answer3" value={this.state.answer3} onKeyUp={this.answer3Handler} onChange={this.answer3Handler}></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fourth Answer</td>
-                                        <td><input type="text" name="answer4" value={this.state.answer4} onKeyUp={this.answer4Handler} onChange={this.answer4Handler}></input></td>
+        return <div className="col-md-8">
+                <div className="card">
+                    <div className="card-header"><h5>Enter your question!</h5></div>
+                    <div className="card-body">
+                        <p>Select a Category:</p>
+                        <CategoryList categories={this.state.categories} updateParent={this.updateCategory} selected={this.state.category}></CategoryList>
+                        <hr></hr>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Question:</td>
+                                    <td><input type="text" className="wideInput form-control" name="question" value={this.state.question} onKeyUp={this.questionHandler} onChange={this.questionHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>First Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer1" value={this.state.answer1} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>Second Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer2" value={this.state.answer2} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>Third Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer3" value={this.state.answer3} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>Fourth Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer4" value={this.state.answer4} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button type="button" className="btn btn-success btn-block" onClick={this.submitHandler}>Submit</button>
-                            <button type="button" onClick={this.testButton}>Test</button>
-                            {
-                                this.state.showFeedback ?
-                                <div style={{color:this.state.feedbackColour}}>{this.state.feedback}</div>
-                                : null
-                            }
-                        </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Select the correct answer:</p>
+                        { this.state.answer1 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 1 ? "btn-success" : "btn-light"}`}
+                                name="correct1"
+                                onClick={this.correctHandler}
+                            >
+                            {this.state.answer1}
+                            </button>
+                        }
+                        { this.state.answer2 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 2 ? "btn-success" : "btn-light"}`}
+                                name="correct2"
+                                onClick={this.correctHandler}
+                            >
+                                {this.state.answer2}
+                            </button>
+                        }
+                        { this.state.answer3 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 3 ? "btn-success" : "btn-light"}`}
+                                name="correct3"
+                                onClick={this.correctHandler}
+                            >
+                                {this.state.answer3}
+                            </button>
+                        }
+                        { this.state.answer4 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 4 ? "btn-success" : "btn-light"}`}
+                                name="correct4"
+                                onClick={this.correctHandler}
+                            >
+                                {this.state.answer4}
+                            </button>
+                        }
+                        <button type="button" className="btn btn-success btn-block lowerButton" onClick={this.submitHandler}>Submit</button>
+                        {
+                            this.state.showFeedback ?
+                            <div className="feedbackButton" style={{color:this.state.feedbackColour}}>{this.state.feedback}</div>
+                            : null
+                        }
                     </div>
                 </div>
             </div>
-        </div>
     }
 }
 
 export default InputPage;
 
-if (document.getElementById('example')) {
-    ReactDOM.render(<InputPage />, document.getElementById('example'));
-}
+// if (document.getElementById('example')) {
+//     ReactDOM.render(<InputPage />, document.getElementById('example'));
+// }

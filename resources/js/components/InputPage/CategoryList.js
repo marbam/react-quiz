@@ -6,20 +6,13 @@ class CategoryList extends Component {
     constructor () {
         super();
         this.changeSelection = this.changeSelection.bind(this);
-        this.state = {
-            selectedId: ''
-        }
     }
 
     changeSelection(id) {
-        this.setState({
-            selectedId: id
-        })
         this.props.updateParent(id);
     }
 
     render() {
-
         return <div>
         {
             this.props.categories.map((ob) =>
@@ -27,7 +20,7 @@ class CategoryList extends Component {
                     name={ob.name}
                     id={ob.id}
                     key={ob.id}
-                    selectedId={this.state.selectedId}
+                    selectedId={this.props.selected}
                     click={this.changeSelection}>
                 </CategoryButton>
             )

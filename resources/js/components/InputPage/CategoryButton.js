@@ -9,7 +9,7 @@ function CategoryButton(props) {
     return <button
         type="button"
         onClick={handleButtonClick}
-        className={`btn ${props.id == props.selectedId ? "btn-success" : "btn-default"}`}
+        className={`categoryButton btn ${props.id == props.selectedId ? "btn-success" : "btn-light"}`}
         id={props.id}>{props.name}
     </button>
 }

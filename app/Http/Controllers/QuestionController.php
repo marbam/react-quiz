@@ -8,96 +8,51 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Question $question)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Question $question)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Question $question)
-    {
-        //
-    }
-
     public function save(Request $request) {
-        // $data = $request->all();
+        $data = $request->all();
 
-        // $question = Question::create([
-        //     'category_id' => $data[0],
-        //     'text' => $data[1]
-        // ]);
+        $question = Question::create([
+            'category_id' => $data[0],
+            'text' => $data[1]
+        ]);
 
-        // for ($i = 2; $i <= 5; $i++) {
-        //     Answer::create([
-        //         'question_id' => $question->id,
-        //         'text' => $data[$i]
-        //     ]);
-        // }
+        for ($i = 2; $i <= 5; $i++) {
+            Answer::create([
+                'question_id' => $question->id,
+                'text' => $data[$i],
+                'correct' => ($data[6]+1 == $i ? 1: 0)
+            ]);
+        }
+        // $data[6] contains the correct answer, 1-4.
+
         return true;
+    }
+
+    public function getQuestionCount($category_id) {
+        $count = Question::where('category_id', $category_id)->count();
+        $options = [];
+        if (!$count) {
+            $options[] = "No Questions!";
+            return $options;
+        }
+        if ($count >= 5) {
+            $options[] = 5;
+        }
+        if ($count >= 10) {
+            $options[] = 10;
+        }
+        if (!in_array($count, [5, 10])) {
+            $options[] = $count;
+        }
+        return $options;
+    }
+
+    public function getQuestions($category_id, $count) {
+        return  Question::where('category_id', $category_id)
+                        ->with('answersInRandomOrder:id,text,correct,question_id')
+                        ->inRandomOrder()
+                        ->limit($count)
+                        ->get(['id', 'text'])
+                        ->toArray();
     }
 }
