@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InputPage from './InputPage/InputPage';
+import MainContainer from './MainContainer/MainContainer';
 
 function App() {
 
     return (
         <div className="container">
-            <InputPage></InputPage>
+            <MainContainer></MainContainer>
         </div>
     );
 }

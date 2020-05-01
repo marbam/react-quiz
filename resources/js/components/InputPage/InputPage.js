@@ -150,93 +150,89 @@ class InputPage extends Component {
     }
 
     render() {
-        return <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header"><h5>Enter your question!</h5></div>
-                        <div className="card-body">
-                            <p>Select a Category:</p>
-                            <CategoryList categories={this.state.categories} updateParent={this.updateCategory} selected={this.state.category}></CategoryList>
-                            <hr></hr>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Question:</td>
-                                        <td><input type="text" className="wideInput form-control" name="question" value={this.state.question} onKeyUp={this.questionHandler} onChange={this.questionHandler}></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>First Answer: </td>
-                                        <td><input type="text" className="thinInput form-control" name="answer1" value={this.state.answer1} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Second Answer: </td>
-                                        <td><input type="text" className="thinInput form-control" name="answer2" value={this.state.answer2} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Third Answer: </td>
-                                        <td><input type="text" className="thinInput form-control" name="answer3" value={this.state.answer3} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fourth Answer: </td>
-                                        <td><input type="text" className="thinInput form-control" name="answer4" value={this.state.answer4} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+        return <div className="justify-content-center">
+                <div className="card">
+                    <div className="card-header"><h5>Enter your question!</h5></div>
+                    <div className="card-body">
+                        <p>Select a Category:</p>
+                        <CategoryList categories={this.state.categories} updateParent={this.updateCategory} selected={this.state.category}></CategoryList>
+                        <hr></hr>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Question:</td>
+                                    <td><input type="text" className="wideInput form-control" name="question" value={this.state.question} onKeyUp={this.questionHandler} onChange={this.questionHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>First Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer1" value={this.state.answer1} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>Second Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer2" value={this.state.answer2} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>Third Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer3" value={this.state.answer3} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
+                                </tr>
+                                <tr>
+                                    <td>Fourth Answer: </td>
+                                    <td><input type="text" className="thinInput form-control" name="answer4" value={this.state.answer4} onKeyUp={this.answerHandler} onChange={this.answerHandler}></input></td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p>Select the correct answer:</p>
-                            { this.state.answer1 == '' ? null :
-                                <button
-                                    className={`btn ${this.state.correctId === 1 ? "btn-success" : "btn-light"}`}
-                                    name="correct1"
-                                    onClick={this.correctHandler}
-                                >
-                                {this.state.answer1}
-                                </button>
-                            }
-                            { this.state.answer2 == '' ? null :
-                                <button
-                                    className={`btn ${this.state.correctId === 2 ? "btn-success" : "btn-light"}`}
-                                    name="correct2"
-                                    onClick={this.correctHandler}
-                                >
-                                    {this.state.answer2}
-                                </button>
-                            }
-                            { this.state.answer3 == '' ? null :
-                                <button
-                                    className={`btn ${this.state.correctId === 3 ? "btn-success" : "btn-light"}`}
-                                    name="correct3"
-                                    onClick={this.correctHandler}
-                                >
-                                    {this.state.answer3}
-                                </button>
-                            }
-                            { this.state.answer4 == '' ? null :
-                                <button
-                                    className={`btn ${this.state.correctId === 4 ? "btn-success" : "btn-light"}`}
-                                    name="correct4"
-                                    onClick={this.correctHandler}
-                                >
-                                    {this.state.answer4}
-                                </button>
-                            }
-                            <button type="button" className="btn btn-success btn-block lowerButton" onClick={this.submitHandler}>Submit</button>
-                            {
-                                this.state.showFeedback ?
-                                <div className="feedbackButton" style={{color:this.state.feedbackColour}}>{this.state.feedback}</div>
-                                : null
-                            }
-                        </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Select the correct answer:</p>
+                        { this.state.answer1 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 1 ? "btn-success" : "btn-light"}`}
+                                name="correct1"
+                                onClick={this.correctHandler}
+                            >
+                            {this.state.answer1}
+                            </button>
+                        }
+                        { this.state.answer2 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 2 ? "btn-success" : "btn-light"}`}
+                                name="correct2"
+                                onClick={this.correctHandler}
+                            >
+                                {this.state.answer2}
+                            </button>
+                        }
+                        { this.state.answer3 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 3 ? "btn-success" : "btn-light"}`}
+                                name="correct3"
+                                onClick={this.correctHandler}
+                            >
+                                {this.state.answer3}
+                            </button>
+                        }
+                        { this.state.answer4 == '' ? null :
+                            <button
+                                className={`btn ${this.state.correctId === 4 ? "btn-success" : "btn-light"}`}
+                                name="correct4"
+                                onClick={this.correctHandler}
+                            >
+                                {this.state.answer4}
+                            </button>
+                        }
+                        <button type="button" className="btn btn-success btn-block lowerButton" onClick={this.submitHandler}>Submit</button>
+                        {
+                            this.state.showFeedback ?
+                            <div className="feedbackButton" style={{color:this.state.feedbackColour}}>{this.state.feedback}</div>
+                            : null
+                        }
                     </div>
                 </div>
             </div>
-        </div>
     }
 }
 
 export default InputPage;
 
-if (document.getElementById('example')) {
-    ReactDOM.render(<InputPage />, document.getElementById('example'));
-}
+// if (document.getElementById('example')) {
+//     ReactDOM.render(<InputPage />, document.getElementById('example'));
+// }
