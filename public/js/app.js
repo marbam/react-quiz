@@ -66573,6 +66573,88 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/AnswerPage/AnswerButton.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/AnswerPage/AnswerButton.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var AnswerButton = /*#__PURE__*/function (_Component) {
+  _inherits(AnswerButton, _Component);
+
+  var _super = _createSuper(AnswerButton);
+
+  function AnswerButton() {
+    var _this;
+
+    _classCallCheck(this, AnswerButton);
+
+    _this = _super.call(this);
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(AnswerButton, [{
+    key: "render",
+    value: function render() {
+      var useClass = 'btn-light';
+
+      if (this.props.answered) {
+        if (this.props.aKey == this.props.answerKey && this.props.correct) {
+          useClass = 'btn-success';
+        } else if (this.props.aKey == this.props.answerKey && !this.props.correct) {
+          useClass = 'btn-danger';
+        }
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn ".concat(useClass),
+        disabled: this.props.answered,
+        onClick: this.props.callBack,
+        value: this.props.aKey
+      }, this.props.answer.text);
+    }
+  }]);
+
+  return AnswerButton;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (AnswerButton);
+
+/***/ }),
+
 /***/ "./resources/js/components/AnswerPage/AnswerPage.js":
 /*!**********************************************************!*\
   !*** ./resources/js/components/AnswerPage/AnswerPage.js ***!
@@ -66586,6 +66668,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Question */ "./resources/js/components/AnswerPage/Question.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -66613,27 +66696,31 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var AnswerPage = /*#__PURE__*/function (_Component) {
   _inherits(AnswerPage, _Component);
 
   var _super = _createSuper(AnswerPage);
 
   function AnswerPage() {
+    var _this$state;
+
     var _this;
 
     _classCallCheck(this, AnswerPage);
 
     _this = _super.call(this);
-    _this.state = _defineProperty({
+    _this.state = (_this$state = {
       category: '',
       categories: [],
       questions: [],
       questionCounts: [],
       questionCount: ''
-    }, "questions", []);
+    }, _defineProperty(_this$state, "questions", []), _defineProperty(_this$state, "totalCorrect", 0), _this$state);
     _this.categoryHandler = _this.categoryHandler.bind(_assertThisInitialized(_this));
-    _this.questionCountHandler = _this.questionCountHandler.bind(_assertThisInitialized(_this)); // this.answerHandler = this.answerHandler.bind(this);
-
+    _this.questionCountHandler = _this.questionCountHandler.bind(_assertThisInitialized(_this));
+    _this.correctHandler = _this.correctHandler.bind(_assertThisInitialized(_this));
+    _this.resetHandler = _this.resetHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -66679,10 +66766,28 @@ var AnswerPage = /*#__PURE__*/function (_Component) {
           questions: response.data
         });
       });
-    } // answerHandler(event) {
-    //     console.log(event.target)
-    // }
+    }
+  }, {
+    key: "correctHandler",
+    value: function correctHandler(shouldUpdate) {
+      if (shouldUpdate) {
+        this.setState({
+          totalCorrect: this.state.totalCorrect + 1
+        });
+      }
+    }
+  }, {
+    key: "resetHandler",
+    value: function resetHandler() {
+      var _this$setState;
 
+      this.setState((_this$setState = {
+        category: '',
+        questions: [],
+        questionCounts: [],
+        questionCount: ''
+      }, _defineProperty(_this$setState, "questions", []), _defineProperty(_this$setState, "totalCorrect", 0), _this$setState));
+    }
   }, {
     key: "render",
     value: function render() {
@@ -66711,17 +66816,17 @@ var AnswerPage = /*#__PURE__*/function (_Component) {
           onClick: _this5.questionCountHandler
         }, count);
       }), this.state.questions.map(function (question, qKey) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: qKey
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, qKey + 1, ": ", question.text), question.answers_in_random_order.map(function (answer, aKey) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "btn btn-light" // value={qKey_aKey}
-            ,
-            key: aKey,
-            onClick: _this5.answerHandler
-          }, answer.text);
-        }));
-      }))));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Question__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: qKey,
+          data: question,
+          correctCallback: _this5.correctHandler
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-footer"
+      }, !this.state.questionCount ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Score: ", this.state.totalCorrect, " / ", this.state.questionCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-success",
+        onClick: this.resetHandler
+      }, "Reset")))));
     }
   }]);
 
@@ -66731,6 +66836,107 @@ var AnswerPage = /*#__PURE__*/function (_Component) {
 /* harmony default export */ __webpack_exports__["default"] = (AnswerPage); // if (document.getElementById('example')) {
 //     ReactDOM.render(<MainContainer />, document.getElementById('example'));
 // }
+
+/***/ }),
+
+/***/ "./resources/js/components/AnswerPage/Question.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/AnswerPage/Question.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _AnswerButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AnswerButton */ "./resources/js/components/AnswerPage/AnswerButton.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var Question = /*#__PURE__*/function (_Component) {
+  _inherits(Question, _Component);
+
+  var _super = _createSuper(Question);
+
+  function Question() {
+    var _this;
+
+    _classCallCheck(this, Question);
+
+    _this = _super.call(this);
+    _this.state = {
+      answered: false,
+      answerKey: null,
+      correct: ''
+    };
+    _this.answerClickHandler = _this.answerClickHandler.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Question, [{
+    key: "answerClickHandler",
+    value: function answerClickHandler(event) {
+      var selectedKey = event.target.value;
+      var selectedAnswer = this.props.data.answers_in_random_order[selectedKey];
+      this.setState({
+        answered: true,
+        answerKey: selectedKey,
+        correct: selectedAnswer.correct
+      });
+
+      if (selectedAnswer.correct) {
+        this.props.correctCallback(true);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.data.text), this.props.data.answers_in_random_order.map(function (answer, aKey) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AnswerButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          answer: answer,
+          aKey: aKey,
+          key: aKey,
+          answered: _this2.state.answered,
+          answerKey: _this2.state.answerKey,
+          correct: _this2.state.correct,
+          callBack: _this2.answerClickHandler
+        });
+      }));
+    }
+  }]);
+
+  return Question;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Question);
 
 /***/ }),
 

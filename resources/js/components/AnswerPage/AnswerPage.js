@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Question from './Question';
 
 class AnswerPage extends Component {
     constructor () {
@@ -10,11 +11,13 @@ class AnswerPage extends Component {
             questions: [],
             questionCounts: [],
             questionCount: '',
-            questions: []
+            questions: [],
+            totalCorrect: 0
         }
         this.categoryHandler = this.categoryHandler.bind(this);
         this.questionCountHandler = this.questionCountHandler.bind(this);
-        // this.answerHandler = this.answerHandler.bind(this);
+        this.correctHandler = this.correctHandler.bind(this);
+        this.resetHandler = this.resetHandler.bind(this);
     }
 
     componentDidMount () {
@@ -54,9 +57,24 @@ class AnswerPage extends Component {
         })
     }
 
-    // answerHandler(event) {
-    //     console.log(event.target)
-    // }
+    correctHandler(shouldUpdate) {
+        if(shouldUpdate) {
+            this.setState({
+                totalCorrect: this.state.totalCorrect+1
+            });
+        }
+    }
+
+    resetHandler() {
+        this.setState({
+            category: '',
+            questions: [],
+            questionCounts: [],
+            questionCount: '',
+            questions: [],
+            totalCorrect: 0
+        })
+    }
 
     render() {
         return <div className="col-md-8">
@@ -87,20 +105,21 @@ class AnswerPage extends Component {
                             )}
 
                             {this.state.questions.map((question, qKey) =>
-                                <div key={qKey}>
-                                    <p>{qKey+1}: {question.text}</p>
-                                    {question.answers_in_random_order.map((answer, aKey) =>
-                                        <button
-                                            className="btn btn-light"
-                                            // value={qKey_aKey}
-                                            key={aKey}
-                                            onClick={this.answerHandler}
-                                        >
-                                            {answer.text}
-                                        </button>
-                                    )}
-                                </div>
+                                <Question key={qKey} data={question} correctCallback={this.correctHandler}></Question>
                             )}
+                        </div>
+                        <div className="card-footer">
+                            { !this.state.questionCount ? null :
+                                <div>
+                                    <h4>Score: {this.state.totalCorrect} / {this.state.questionCount}</h4>
+                                    <button
+                                        className="btn btn-success"
+                                        onClick={this.resetHandler}
+                                    >
+                                        Reset
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
