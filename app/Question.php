@@ -10,4 +10,12 @@ class Question extends Model
         'text',
         'category_id'
     ];
+
+    public function answers() {
+        return $this->hasMany('App\Answer');
+    }
+
+    public function answersInRandomOrder() {
+        return $this->hasMany('App\Answer')->inRandomOrder();
+    }
 }

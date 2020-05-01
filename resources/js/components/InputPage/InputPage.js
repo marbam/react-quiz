@@ -150,7 +150,7 @@ class InputPage extends Component {
     }
 
     render() {
-        return <div className="justify-content-center">
+        return <div className="col-md-8">
                 <div className="card">
                     <div className="card-header"><h5>Enter your question!</h5></div>
                     <div className="card-body">

@@ -27,4 +27,32 @@ class QuestionController extends Controller
 
         return true;
     }
+
+    public function getQuestionCount($category_id) {
+        $count = Question::where('category_id', $category_id)->count();
+        $options = [];
+        if (!$count) {
+            $options[] = "No Questions!";
+            return $options;
+        }
+        if ($count >= 5) {
+            $options[] = 5;
+        }
+        if ($count >= 10) {
+            $options[] = 10;
+        }
+        if (!in_array($count, [5, 10])) {
+            $options[] = $count;
+        }
+        return $options;
+    }
+
+    public function getQuestions($category_id, $count) {
+        return  Question::where('category_id', $category_id)
+                        ->with('answersInRandomOrder:id,text,correct,question_id')
+                        ->inRandomOrder()
+                        ->limit($count)
+                        ->get(['id', 'text'])
+                        ->toArray();
+    }
 }

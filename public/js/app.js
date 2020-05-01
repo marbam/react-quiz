@@ -66573,6 +66573,167 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/AnswerPage/AnswerPage.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/AnswerPage/AnswerPage.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var AnswerPage = /*#__PURE__*/function (_Component) {
+  _inherits(AnswerPage, _Component);
+
+  var _super = _createSuper(AnswerPage);
+
+  function AnswerPage() {
+    var _this;
+
+    _classCallCheck(this, AnswerPage);
+
+    _this = _super.call(this);
+    _this.state = _defineProperty({
+      category: '',
+      categories: [],
+      questions: [],
+      questionCounts: [],
+      questionCount: ''
+    }, "questions", []);
+    _this.categoryHandler = _this.categoryHandler.bind(_assertThisInitialized(_this));
+    _this.questionCountHandler = _this.questionCountHandler.bind(_assertThisInitialized(_this)); // this.answerHandler = this.answerHandler.bind(this);
+
+    return _this;
+  }
+
+  _createClass(AnswerPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios.get('/api/categories').then(function (response) {
+        _this2.setState({
+          categories: response.data
+        });
+      });
+    }
+  }, {
+    key: "categoryHandler",
+    value: function categoryHandler(event) {
+      var _this3 = this;
+
+      this.setState({
+        category: event.target.value,
+        questionCounts: [],
+        questionCount: '',
+        questions: []
+      });
+      axios.get('/api/count_questions/' + event.target.value).then(function (response) {
+        _this3.setState({
+          questionCounts: response.data
+        });
+      });
+    }
+  }, {
+    key: "questionCountHandler",
+    value: function questionCountHandler(event) {
+      var _this4 = this;
+
+      this.setState({
+        questionCount: event.target.value
+      });
+      var url = '/api/questions/' + this.state.category + '/' + event.target.value;
+      axios.get(url).then(function (response) {
+        _this4.setState({
+          questions: response.data
+        });
+      });
+    } // answerHandler(event) {
+    //     console.log(event.target)
+    // }
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this5 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Questions!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select Your Category:"), this.state.categories.map(function (ob) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn ".concat(_this5.state.category == ob.id ? "btn-success" : "btn-light"),
+          value: ob.id,
+          key: ob.id,
+          onClick: _this5.categoryHandler
+        }, ob.name);
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "How Many Questions?"), this.state.questionCounts.map(function (count) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn ".concat(_this5.state.questionCount == count ? "btn-success" : "btn-light"),
+          key: count,
+          value: count,
+          onClick: _this5.questionCountHandler
+        }, count);
+      }), this.state.questions.map(function (question, qKey) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: qKey
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, qKey + 1, ": ", question.text), question.answers_in_random_order.map(function (answer, aKey) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "btn btn-light" // value={qKey_aKey}
+            ,
+            key: aKey,
+            onClick: _this5.answerHandler
+          }, answer.text);
+        }));
+      }))));
+    }
+  }]);
+
+  return AnswerPage;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (AnswerPage); // if (document.getElementById('example')) {
+//     ReactDOM.render(<MainContainer />, document.getElementById('example'));
+// }
+
+/***/ }),
+
 /***/ "./resources/js/components/App.js":
 /*!****************************************!*\
   !*** ./resources/js/components/App.js ***!
@@ -66954,7 +67115,7 @@ var InputPage = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "justify-content-center"
+        className: "col-md-8"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -67052,6 +67213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _InputPage_InputPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../InputPage/InputPage */ "./resources/js/components/InputPage/InputPage.js");
+/* harmony import */ var _AnswerPage_AnswerPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../AnswerPage/AnswerPage */ "./resources/js/components/AnswerPage/AnswerPage.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -67073,6 +67235,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -67124,7 +67287,7 @@ var MainContainer = /*#__PURE__*/function (_Component) {
         className: "btn ".concat(this.state.action == 'answer' ? "btn-success" : "btn-light"),
         name: "answer",
         onClick: this.optionHandler
-      }, "Answer Questions")))), this.state.action == "add" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputPage_InputPage__WEBPACK_IMPORTED_MODULE_2__["default"], null) : null);
+      }, "Answer Questions")))), this.state.action == "add" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputPage_InputPage__WEBPACK_IMPORTED_MODULE_2__["default"], null) : null, this.state.action == "answer" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AnswerPage_AnswerPage__WEBPACK_IMPORTED_MODULE_3__["default"], null) : null);
     }
   }]);
 

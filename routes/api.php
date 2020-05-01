@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/categories', 'CategoryController@getCategories');
 Route::post('/save_question', 'QuestionController@save');
 
+Route::get('count_questions/{category_id}', 'QuestionController@getQuestionCount');
+
+Route::get('questions/{category_id}/{count}', 'QuestionController@getQuestions');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

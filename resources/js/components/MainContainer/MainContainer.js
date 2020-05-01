@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import InputPage from '../InputPage/InputPage';
+import AnswerPage from '../AnswerPage/AnswerPage';
 
 class MainContainer extends Component {
     constructor () {
@@ -41,6 +42,8 @@ class MainContainer extends Component {
                         </div>
                     </div>
                     { this.state.action == "add" ? <InputPage></InputPage> : null}
+                    { this.state.action == "answer" ? <AnswerPage></AnswerPage> : null}
+
                 </div>
     }
 }
